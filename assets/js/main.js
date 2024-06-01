@@ -39,7 +39,7 @@ $(document).on("submit", "#request", function (e) {
 });
 
 //register ajax sending Post request
- function regester(e) {
+$(document).on("submit", "#registerForm", function (e) {
   e.preventDefault();
   $("#registerForm > .submit_btn").attr("disabled", "true");
   let url = "./handlers/handleRegister.php";
@@ -48,12 +48,10 @@ $(document).on("submit", "#request", function (e) {
     url: url,
     data: $(this).serialize(),
     dataType: "JSON",
-
     success: function (data) {
       console.log(data);
       $("#registerForm > .submit_btn").removeAttr("disabled");
       if (data.success) {
-
         $("#Errs").empty();
         $(".successMsg").empty();
         $(".successMsg").append(`<p class='p-3 m-0' >${data.successMsg}</p>`);
@@ -68,7 +66,7 @@ $(document).on("submit", "#request", function (e) {
       }
     },
   });
-};
+});
 //logInForm ajax sending Post request
 $(document).on("submit", "#loginForm", function (e) {
   e.preventDefault();

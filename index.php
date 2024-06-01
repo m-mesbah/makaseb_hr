@@ -107,7 +107,7 @@ $result = $connectDb->select($conn,$sql);
 
                             </div>
                             
-                            <button type="submit" class="btn btn-primary submit_btn" id="regiser" onclick="regester(e)">Register</button>
+                            <button type="submit" class="btn btn-primary submit_btn" id="regiser">Register</button>
                         </form> 
                     </div>
                    
