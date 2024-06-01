@@ -64,9 +64,9 @@ $conn = $connect->connectdb();
 </div>
 
 <div class=" dflex justify-content-center row  mt-5">
-        <a href="../requests/requests.php" class="btn btn-success col-md-6 col-lg-3 m-2 py-2"> Show requests</a>
+        <a href="../requests/view.php" class="btn btn-success col-md-6 col-lg-3 m-2 py-2"> Show requests</a>
 
-        <a href="#" class="btn btn-success col-md-6 col-lg-3 m-2 py-2"> Add requests</a>
+        <a href="../requests/requests.php" class="btn btn-success col-md-6 col-lg-3 m-2 py-2"> Add requests</a>
 </div>
 
 <?php require_once('../../includes/footer.php'); ?>
