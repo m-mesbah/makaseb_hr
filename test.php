@@ -164,7 +164,7 @@ function JeraGetvolume($jera_id, $currency = true){
 </tr>
 
 
-<form action="../../handlers/handleAcceptRequest.php" class="text-center" method="get">
+<form action="../../handlers/handleAcceptRequest.php" class="text-center" method="get" accept="application/pdf">
     <textarea name="spcs" cols="30" rows="10" placeholder="Add Specifications"></textarea>
     <input type="text" name="id" value="" hidden>
     <input type="text" name="status" value="" hidden>

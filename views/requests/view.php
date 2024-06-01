@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require_once('../../controllers/AuthController.php');
 require_once('../../HijriDateLib/hijri.class.php');
 require_once('../../controllers/DataHandlingController.php');
@@ -76,8 +75,8 @@ $result = $connectDb->select($conn, $sql);
 <div class="container">
     <div class="text-center mt-4">
 
-        <div class="bg-success text-center"><?php echo @$_SESSION['req_succ'];session_unset($_SESSION['req_succ']); ?></div>
-        <div class="bg-danger text-center"><?php echo @$_SESSION['req_err'] ?></div>
+        <div class="bg-success text-center text-white"><?php echo @$_SESSION['req_succ'];unset($_SESSION['req_succ']); ?></div>
+        <div class="bg-danger text-center text-white"><?php echo @$_SESSION['req_err']; unset($_SESSION['req_err']); ?></div>
         <h4 class="text-success">Requests</h4>
     </div>
     <table class="table">
@@ -121,7 +120,7 @@ $result = $connectDb->select($conn, $sql);
                     </tbody>
                         <tr>
                             <th scope="col">Action</th>
-                            <td scope="col" id="action"></td>
+                            <td scope="col" class="text-center" id="action"></td>
                         </tr>
                 </table>
             </div>
@@ -163,7 +162,7 @@ $result = $connectDb->select($conn, $sql);
                     <?php if(@$_SESSION['group_id'] == '7' || @$_SESSION['group_id'] == '100'){?>
                     $('#action').append(`
                     <form action="../../handlers/handleAcceptRequest.php" class="text-center" method="get">
-                        <textarea name="spcs" id="" cols="30" rows="10" placeholder="Add Specifications" require></textarea>
+                        <textarea name="spcs" id="" cols="30" rows="10" placeholder="Add Specifications" required></textarea>
                         <input type="text" name="id" value="${data.id}" hidden>
                         <input type="text" name="status" value="1" hidden>
                         <button type="submit" class="btn btn-success">Send To CEO</button>
@@ -176,8 +175,23 @@ $result = $connectDb->select($conn, $sql);
                     $('#action').append(`<h5  style='color:${data.color};' >Waiting CEO....</h5>
                     <?php if(@$_SESSION['group_id'] == '1' || @$_SESSION['group_id'] == '100'){?>
                         <a class='btn btn-success' href='../../handlers/handleAcceptRequest.php?id=${data.id}&status=3&date=<?php echo date('Y-m-d H:i:s');?>' >Accept</a>
-                        <a class='btn btn-danger' href='../../handlers/handelRejected.php?id=${data.id}&status=2' >reject</a>
+                        </br>
+                        <form action="../../handlers/handleAcceptRequest.php" class="text-center mt-2" method="get">
+                            <textarea name="st_comment" id="" cols="30" rows="3" placeholder="Add a reject comment" required></textarea>
+                            <input type="text" name="id" value="${data.id}" hidden>
+                            <input type="text" name="status" value="2" hidden>
+                            <button type="submit" class="btn btn-danger">Reject</button>
+                        </form>
                     <?php }?>
+                    <?php if(@$_SESSION['group_id'] == '7' || @$_SESSION['group_id'] == '100'){?>
+                        <form action="../../handlers/handleAcceptRequest.php" class="text-center mt-2" method="get">
+                            <textarea name="spcs" id="" cols="30" rows="10" placeholder="Edite Specifications" required>${data.spcs}</textarea>
+                            <input type="text" name="id" value="${data.id}" hidden>
+                            <input type="text" name="status" value="1" hidden>
+                            <button type="submit" class="btn btn-success">Edite Spicifications</button>
+                        </form>
+                    <?php }?>
+
                     
                     `)
                 }
@@ -192,16 +206,27 @@ $result = $connectDb->select($conn, $sql);
                     <?php }?>
                 }
                 if(data.req_status == 4){
-                    $('#action').append(`<p  style='color:${data.color};' >Waiting for  the date to get the mony (${data.acc_date}) </p>`)
+                    $('#action').append(`<p  style='color:${data.color};' >Waiting for  the date to get the money (${data.acc_date}) </p>`)
                 }
                 if(data.req_status == 5){
                     $('#action').append(`<p  style='color:${data.color};' >Buying the devices....</p>`)
+                    <?php if(@$_SESSION['group_id'] == '7' || @$_SESSION['group_id'] == '100'){?>
+                        $('#action').append(`<a class='btn btn-success' href='../../handlers/handleAcceptRequest.php?id=${data.id}&status=6' >Move to deliver</a>`)
+                    <?php }?>
                 }
                 if(data.req_status == 6){
                     // set the serial number and upload contract pdf 
                     $('#action').append(`<p  style='color:${data.color};' >Buy devices at ${data.buy_date}  </p></br>
                     <?php if(@$_SESSION['group_id'] == '7' || @$_SESSION['group_id'] == '100'){?>
-                        <a class='btn btn-success' href='../../views/requests/delever.php?id=${data.id}&status=7' >deliver the devices</a>
+                        
+                        <form action="../../handlers/handleAcceptRequest.php"   class="text-center mt-2" method="post" enctype="multipart/form-data" >
+                            <input type="file" class='form-control mb-1' name="contract" accept="application/pdf" required ></br>
+                            <input type="text" class='form-control mb-1' name="serial_num" value="" placeholder='serial number' required></br>
+                            <input type="text"  name="id" value="${data.id}" hidden>
+                            <input type="text"  name="status" value="7" hidden>
+                            <button type="submit" class="btn btn-success">Delivered</button>
+                        </form>
+
                     <?php }?>
                     `)
                 }
@@ -293,7 +318,7 @@ $result = $connectDb->select($conn, $sql);
                         </tr>
                         <tr>
                             <th scope="col">Contract pdf</th>
-                            <td scope="col">${data.req_contract}</td>
+                            <td scope="col"><a href='../../assets/contracts/${data.req_contract}' target='_blank' class="btn"><i class="fa fa-download"></i> Download</a></td>
                         </tr>
                         <tr>
                             <th scope="col">Serial number</th>
