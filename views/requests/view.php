@@ -75,6 +75,9 @@ $result = $connectDb->select($conn, $sql);
 
 <div class="container">
     <div class="text-center mt-4">
+
+        <div class="bg-success text-center"><?php echo @$_SESSION['req_succ'];session_unset($_SESSION['req_succ']); ?></div>
+        <div class="bg-danger text-center"><?php echo @$_SESSION['req_err'] ?></div>
         <h4 class="text-success">Requests</h4>
     </div>
     <table class="table">
@@ -160,7 +163,7 @@ $result = $connectDb->select($conn, $sql);
                     <?php if(@$_SESSION['group_id'] == '7' || @$_SESSION['group_id'] == '100'){?>
                     $('#action').append(`
                     <form action="../../handlers/handleAcceptRequest.php" class="text-center" method="get">
-                        <textarea name="spcs" id="" cols="30" rows="10" placeholder="Add Specifications"></textarea>
+                        <textarea name="spcs" id="" cols="30" rows="10" placeholder="Add Specifications" require></textarea>
                         <input type="text" name="id" value="${data.id}" hidden>
                         <input type="text" name="status" value="1" hidden>
                         <button type="submit" class="btn btn-success">Send To CEO</button>
@@ -172,8 +175,8 @@ $result = $connectDb->select($conn, $sql);
                 if(data.req_status == 1){
                     $('#action').append(`<h5  style='color:${data.color};' >Waiting CEO....</h5>
                     <?php if(@$_SESSION['group_id'] == '1' || @$_SESSION['group_id'] == '100'){?>
-                        <a class='btn btn-success' href='../../views/handlers/handleAcceptRequest.php?id=${data.id}&status=3&date=<?php echo date('Y-m-d H:i:s');?>' >Accept</a>
-                        <a class='btn btn-danger' href='../../views/requests/accept.php?id=${data.id}&status=2' >reject</a>
+                        <a class='btn btn-success' href='../../handlers/handleAcceptRequest.php?id=${data.id}&status=3&date=<?php echo date('Y-m-d H:i:s');?>' >Accept</a>
+                        <a class='btn btn-danger' href='../../handlers/handelRejected.php?id=${data.id}&status=2' >reject</a>
                     <?php }?>
                     
                     `)
@@ -231,6 +234,10 @@ $result = $connectDb->select($conn, $sql);
                         <tr>
                             <th scope="col">Request date</th>
                             <td scope="col">${data.re_date}</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">SET Spicifications date</th>
+                            <td scope="col">${data.set_spcs_dat}</td>
                         </tr>
                         <tr>
                             <th scope="col">Labtop</th>

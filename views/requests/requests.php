@@ -76,11 +76,11 @@ $result = $connectDb->select($conn,$sql);
             <form class="my-2" id='request' action="../../handlers/handleRequest.php" method="post" >
                 <div id="requestErrs" class="form-text bg-danger text-white requestErrs"></div>
                 <div class="mb-3">
-                    <input type="text" name="emp_name" id="emp_name" placeholder="Your Name" class="form-control" aria-describedby="emailHelp">
+                    <input type="text" require name="emp_name" id="emp_name" placeholder="Your Name" class="form-control" aria-describedby="emailHelp">
                     <div id="emp_name" class="form-text text-danger"></div>
                 </div>
                 <div class="mb-3">
-                    <input type="number" name="emp_code" id="emp_code" placeholder="Your Code" class="form-control" >
+                    <input type="number" require name="emp_code" id="emp_code" placeholder="Your Code" class="form-control" >
                     <div id="emp_code" class="form-text text-danger"></div>
                 </div>
 
@@ -96,7 +96,7 @@ $result = $connectDb->select($conn,$sql);
                 </div>
 
                 <div class="mb-3">
-                    <input type="text" name="department" id="department" placeholder="Your Department"  class="form-control" >
+                    <input type="text" require name="department" id="department" placeholder="Your Department"  class="form-control" >
                     <div id="department" class="form-text text-danger"></div>
                 </div>
 

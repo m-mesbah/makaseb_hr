@@ -43,6 +43,7 @@ $sql = "SELECT
         requests.status as req_status ,
         requests.st_comment as st_comment ,
         requests.re_date as re_date ,
+        requests.set_spcs_dat as set_spcs_dat ,
         requests.ceo_app_date as ceo_app_date ,
         requests.acc_date as acc_date ,
         requests.buy_date as buy_date ,
