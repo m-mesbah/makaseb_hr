@@ -89,6 +89,7 @@ $result = $connectDb->select($conn, $sql);
         <tbody>
             <?php 
             while($row = $result->fetch_assoc()){
+                die(print_r($row));
             ?>
             <tr>
                 <td scope="col"><?php echo $row['requests.id'] ?></td>
