@@ -53,8 +53,7 @@ $(document).on("submit", "#registerForm", function (e) {
       console.log(data);
       $("#registerForm > .submit_btn").removeAttr("disabled");
       if (data.success) {
-        // the redirect goes here
-        window.location.href = "./views/dashboard/index.php"; 
+
         $("#Errs").empty();
         $(".successMsg").empty();
         $(".successMsg").append(`<p class='p-3 m-0' >${data.successMsg}</p>`);
