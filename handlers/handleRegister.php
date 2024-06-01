@@ -56,24 +56,19 @@ $sql = "SELECT * FROM `users` WHERE userEmail ='$userEmail'";
 $result = $connectDb->select($conn,$sql);
 
 if($result->num_rows > 0){
-  $conn->close();
   array_push(DataHandlingController::$errs,"The email you just enterd is exist");
   echo (json_encode(DataHandlingController::$errs)); 
   die();
 }
 else{
   //if email not exist insert user data and redirect to dashboard
-  $sqlToAddUser="INSERT INTO `users` ( `userName`, `userEmail`, `password`, `company`) VALUES ( '$userName', '$userEmail', '$userPassword', '$company')";
+  $sqlToAddUser="INSERT INTO `users` ( `userName`, `userEmail`, `password`, `company`, `active`) VALUES ( '$userName', '$userEmail', '$userPassword', '$company','0')";
   $connectDb->insert($conn,$sqlToAddUser);
-  $conn->close();
-
-  //storing emain in to session to get its data from database anytime
-  $_SESSION['userEmail']=$userEmail;
-  $_SESSION['userName']=$userName;
-  $_SESSION['loggedin'] = true ;
+  
   $success['success'] = true;
-  $success['successMsg'] = 'The request was sent wait until it proved , your request number is: ' . $rquest_number . '';
+  $success['successMsg'] = 'Check the IT to activte your registration and give you a group id suites your position ' . $request_number . '';
   echo (json_encode($success));
+  
   die();
 }
 

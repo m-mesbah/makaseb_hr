@@ -81,10 +81,10 @@ $subject = 'Reset your password';
 // $mail_user = 'mesbah@king-of-herbs.com';
 // $mail_password = 'Mahammad@101459012';
 // $port = 465;
-
+$msg = 'The email  had been send to your email, check your email';
 //sendeng email
 $mail = send_mail($mail_host, $mail_user, $mail_password, $port , $from_mail_header, $from_mail, $userEmailheader, $userEmail ,$mail_body, $alt_body, $subject);
-after_send_email($mail);
+after_send_email($mail,$msg);
 
 ##################################
 ####### sending any email ########

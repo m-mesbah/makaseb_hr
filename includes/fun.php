@@ -42,17 +42,16 @@ function send_mail($mail_host, $mail_user, $mail_password,$port , $from_mail_hea
     
     }
     
-    function after_send_email($mail, $rquest_number)
+    function after_send_email($mail, $msg)
     {
       // send the message
       if (!$mail->send()) {
         array_push(DataHandlingController::$errs, "There is an error to send mail, please try again");
         echo (json_encode(DataHandlingController::$errs));
       } else {
-        //success massage will show after send mail (wait about 10 secends after click reset password button)
-    
+        //success massage will show after send mail 
         $success['success'] = true;
-        $success['successMsg'] = 'The request was sent wait until it proved , your request number is: ' . $rquest_number . '';
+        $success['successMsg'] = "$msg";
         echo (json_encode($success));
         die();
       }

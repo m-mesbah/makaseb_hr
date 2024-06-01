@@ -5,6 +5,7 @@ require_once('../controllers/DataValidationController.php');
 require_once('../controllers/DBController.php');
 require_once("../vendor/autoload.php");
 require_once("../includes/fun.php");
+
 $servername = "localhost";
 $username = "admin";
 $password = "1234@Ali";
@@ -12,10 +13,10 @@ $dbname = "makaseb_req";
 
 
 $_REQUEST['id']= rand();
-if (isset($_REQUEST['labtop'])) $_REQUEST['labtop'] = true;
-if (isset($_REQUEST['mouse_and_pad'])) $_REQUEST['mouse_and_pad'] = true;
-if (isset($_REQUEST['headset'])) $_REQUEST['headset'] = true;
-if (isset($_REQUEST['lap_stand'])) $_REQUEST['lap_stand'] = true;
+if (isset($_REQUEST['labtop'])) $_REQUEST['labtop'] = 'yes';
+if (isset($_REQUEST['mouse_and_pad'])) $_REQUEST['mouse_and_pad'] = 'yes';
+if (isset($_REQUEST['headset'])) $_REQUEST['headset'] = 'yes';
+if (isset($_REQUEST['lap_stand'])) $_REQUEST['lap_stand'] = 'yes';
 
 $department = DataHandlingController::handleData('department', 'Department is require');
 $department = DataValidationController::testInput($department);
@@ -71,10 +72,12 @@ $subject = 'Request';
 // $mail_user = '9c133dd7610d47';
 // $mail_password = '7073871097ffd8';
 
-$userEmail = 'm.mesbah@4tel.sa';
+$userEmail = 'it@it.sa';
+$msg = 'The request was sent wait until it proved , your request number is: ' . $request_number . '';
 //sendeng email
 $mail = send_mail($mail_host, $mail_user, $mail_password, $port, $from_mail_header, $from_mail, $userEmailheader, $userEmail, $mail_body, $alt_body, $subject);
-after_send_email($mail, $request_number);
+after_send_email($mail, $msg);
+
 
 ##################################
 ####### sending any email ########

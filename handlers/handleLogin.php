@@ -75,6 +75,7 @@ else{
             $_SESSION['userEmail']=$userEmail;
             $_SESSION['userName']=$userData['userName'];
             $_SESSION['loggedin']=true;
+            $_SESSION['group_id'] = $userData['group_id'];
 
             $registered['loggedin']=true;
             $registered['redirect']='./views/dashboard/index.php';
