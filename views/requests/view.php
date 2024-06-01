@@ -157,13 +157,13 @@ $result = $connectDb->select($conn, $sql);
                 $("#action").empty();
                 $('#showLoginFormLabel').append(`Request # ${data.id}`)
                 if(data.req_status == 0){
-                    <?php if(@$_SESSION['group_id'] == '0'){?>
+                    <?php if(@$_SESSION['group_id'] == '7' || @$_SESSION['group_id'] == '100'){?>
                     $('#action').append(`<a class='btn btn-success' href='../../views/requests/set_spics.php?id=${data.id}&status=1' >Send CEO</a>`)
                     <?php }?>
                 }
                 if(data.req_status == 1){
                     $('#action').append(`<h5  style='color:${data.color};' >Waiting CEO....</h5>
-                    <?php if(@$_SESSION['group_id'] == '1'){?>
+                    <?php if(@$_SESSION['group_id'] == '1' || @$_SESSION['group_id'] == '100'){?>
                         <a class='btn btn-success' href='../../views/handlers/handleAcceptRequest.php?id=${data.id}&status=3&date=<?php echo date('Y-m-d');?>' >Accept</a>
                         <a class='btn btn-danger' href='../../views/requests/accept.php?id=${data.id}&status=2' >reject</a>
                     <?php }?>
@@ -176,7 +176,7 @@ $result = $connectDb->select($conn, $sql);
                 }
                 if(data.req_status == 3){
                     $('#action').append(`<p  style='color:${data.color};' >Waiting for acc to put the date</p>`)
-                    <?php if(@$_SESSION['group_id'] == '3'){?>
+                    <?php if(@$_SESSION['group_id'] == '3' || @$_SESSION['group_id'] == '100'){?>
                     $('#action').append(`<a class='btn btn-success' href='../../views/requests/set_spics.php?id=${data.id}&status=1' >Set a Date</a>`)
                     <?php }?>
                 }
@@ -189,7 +189,7 @@ $result = $connectDb->select($conn, $sql);
                 if(data.req_status == 6){
                     // set the serial number and upload contract pdf 
                     $('#action').append(`<p  style='color:${data.color};' >Buy devices at ${data.buy_date}  </p></br>
-                    <?php if(@$_SESSION['group_id'] == '100'){?>
+                    <?php if(@$_SESSION['group_id'] == '7' || @$_SESSION['group_id'] == '100'){?>
                         <a class='btn btn-success' href='../../views/requests/delever.php?id=${data.id}&status=7' >deliver the devices</a>
                     <?php }?>
                     `)
