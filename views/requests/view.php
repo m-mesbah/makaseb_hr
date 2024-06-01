@@ -20,6 +20,11 @@ $username = "admin";
 $password = "1234@Ali";
 $dbname = "makaseb_req";
 
+// $servername = "localhost";
+// $username = "root";
+// $password = "";
+// $dbname = "makaseb_hr";
+
 
 $connectDb = new ConnectDb($servername, $username, $password, $dbname);
 $conn = $connectDb->connectdb();
@@ -77,33 +82,14 @@ $result = $connectDb->select($conn, $sql);
             <tr>
                 <th scope="col">Request number</th>
                 <th scope="col">Name</th>
-                <th  scope="col"><button class="btn btn-success" id="show_request">Show</button></th>
+                <th  scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td scope="col">Request number</td>
                 <td scope="col">Name</td>
-                <td scope="col">Code</td>
-                <td scope="col">Company</td>
-                <td scope="col">Department</td>
-                <td scope="col">Request date</td>
-                <td scope="col">Labtop</td>
-                <td scope="col">Mouse and Pad </td>
-                <td scope="col">Headset</td>
-                <td scope="col">Lap stand</td>
-                <td scope="col">Others</td>
-                <td scope="col">Status</td>
-                <td scope="col">Status Comment</td>
-                <td scope="col">Specifications</td>
-                <td scope="col">Ceo date</td>
-                <td scope="col">Refused commint</td>
-                <td scope="col">Accountant date</td>
-                <td scope="col">Buy date</td>
-                <td scope="col">Delevery date</td>
-                <td scope="col">Contract pdf</td>
-                <td scope="col">Serial number</td>
-                <td scope="col">Action</td>
+                <td scope="col"><button class="btn btn-success" id="show_request">Show</button></td>
             </tr>
 
         </tbody>
