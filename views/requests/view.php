@@ -158,13 +158,21 @@ $result = $connectDb->select($conn, $sql);
                 $('#showLoginFormLabel').append(`Request # ${data.id}`)
                 if(data.req_status == 0){
                     <?php if(@$_SESSION['group_id'] == '7' || @$_SESSION['group_id'] == '100'){?>
-                    $('#action').append(`<a class='btn btn-success' href='../../views/requests/set_spics.php?id=${data.id}&status=1' >Send CEO</a>`)
+                    $('#action').append(`
+                    <form action="../../handlers/handleAcceptRequest.php" class="text-center" method="get">
+                        <textarea name="spcs" id="" cols="30" rows="10" placeholder="Add Specifications"></textarea>
+                        <input type="text" name="id" value="${data.id}" hidden>
+                        <input type="text" name="status" value="1" hidden>
+                        <button type="submit" class="btn btn-success">Send To CEO</button>
+                    </form>
+                  
+                    `)
                     <?php }?>
                 }
                 if(data.req_status == 1){
                     $('#action').append(`<h5  style='color:${data.color};' >Waiting CEO....</h5>
                     <?php if(@$_SESSION['group_id'] == '1' || @$_SESSION['group_id'] == '100'){?>
-                        <a class='btn btn-success' href='../../views/handlers/handleAcceptRequest.php?id=${data.id}&status=3&date=<?php echo date('Y-m-d');?>' >Accept</a>
+                        <a class='btn btn-success' href='../../views/handlers/handleAcceptRequest.php?id=${data.id}&status=3&date=<?php echo date('Y-m-d H:i:s');?>' >Accept</a>
                         <a class='btn btn-danger' href='../../views/requests/accept.php?id=${data.id}&status=2' >reject</a>
                     <?php }?>
                     

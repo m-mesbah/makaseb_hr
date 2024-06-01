@@ -162,3 +162,11 @@ function JeraGetvolume($jera_id, $currency = true){
     <th scope="col">Action</th>
     <td scope="col">9897</td>
 </tr>
+
+
+<form action="../../handlers/handleAcceptRequest.php" class="text-center" method="get">
+    <textarea name="spcs" cols="30" rows="10" placeholder="Add Specifications"></textarea>
+    <input type="text" name="id" value="" hidden>
+    <input type="text" name="status" value="" hidden>
+    <button type="submit" class="btn btn-success">Send To CEO</button>
+</form>
