@@ -8,7 +8,7 @@ require_once("../vendor/autoload.php");
 require_once("../includes/fun.php");
 
 
-// AuthController::gustAuth('../index.php');
+AuthController::gustAuth('../index.php');
 
 
 

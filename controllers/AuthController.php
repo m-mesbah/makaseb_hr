@@ -33,7 +33,7 @@ class AuthController{
 
             header("location: $locationToRedirect");
         }
-        }
+    }
 
 
     
