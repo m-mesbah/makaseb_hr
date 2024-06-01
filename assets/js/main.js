@@ -39,7 +39,7 @@ $(document).on("submit", "#request", function (e) {
 });
 
 //register ajax sending Post request
-$(document).on("submit", "#registerForm", function (e) {
+ function regester(e) {
   e.preventDefault();
   $("#registerForm > .submit_btn").attr("disabled", "true");
   let url = "./handlers/handleRegister.php";
@@ -68,7 +68,7 @@ $(document).on("submit", "#registerForm", function (e) {
       }
     },
   });
-});
+};
 //logInForm ajax sending Post request
 $(document).on("submit", "#loginForm", function (e) {
   e.preventDefault();
