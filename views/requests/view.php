@@ -77,26 +77,7 @@ $result = $connectDb->select($conn, $sql);
             <tr>
                 <th scope="col">Request number</th>
                 <th scope="col">Name</th>
-                <th scope="col">Code</th>
-                <th scope="col">Company</th>
-                <th scope="col">Department</th>
-                <th scope="col">Request date</th>
-                <th scope="col">Labtop</th>
-                <th scope="col">Mouse and Pad </th>
-                <th scope="col">Headset</th>
-                <th scope="col">Lap stand</th>
-                <th scope="col">Others</th>
-                <th scope="col">Status</th>
-                <th scope="col">Status Comment</th>
-                <th scope="col">Specifications</th>
-                <th scope="col">Ceo date</th>
-                <th scope="col">Refused commint</th>
-                <th scope="col">Accountant date</th>
-                <th scope="col">Buy date</th>
-                <th scope="col">Delevery date</th>
-                <th scope="col">Contract pdf</th>
-                <th scope="col">Serial number</th>
-                <th scope="col">Action</th>
+                <th  scope="col"><button class="btn btn-success" id="show_request">Show</button></th>
             </tr>
         </thead>
         <tbody>
