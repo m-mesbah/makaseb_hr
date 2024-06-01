@@ -231,7 +231,18 @@ $result = $connectDb->select($conn, $sql);
                     `)
                 }
                 if(data.req_status == 7){
-                    $('#action').append(`<p  style='color:${data.color};' >completed and delivered at (${data.del_date})</p>`)
+                    $('#action').append(`<p  style='color:${data.color};' >completed and delivered at (${data.del_date})</p>
+                    <?php if(@$_SESSION['group_id'] == '7' || @$_SESSION['group_id'] == '100'){?>
+                        <form action="../../handlers/handleAcceptRequest.php"   class="text-center mt-2" method="post" enctype="multipart/form-data" >
+                            <input type="file" class='form-control mb-1' name="contract" accept="application/pdf" required ></br>
+                            <input type="text" class='form-control mb-1' name="serial_num" value="" placeholder='serial number' required></br>
+                            <input type="text"  name="id" value="${data.id}" hidden>
+                            <input type="text"  name="status" value="7" hidden>
+                            <button type="submit" class="btn btn-success">Edite Delivered data</button>
+                        </form>
+
+                    <?php }?>
+                    `)
                 }
                 $(".req_table").append(
                     `
