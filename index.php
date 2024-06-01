@@ -3,6 +3,7 @@
 <?php
 
 session_start();
+$location = true;
 require_once('./controllers/AuthController.php');
 require_once('./includes/header.php');
 require_once('./controllers/DBController.php');
