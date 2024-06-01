@@ -28,7 +28,7 @@ $dbname = "makaseb_req";
 
 $connectDb = new ConnectDb($servername, $username, $password, $dbname);
 $conn = $connectDb->connectdb();
-$sql = "SELECT * FROM `companies` ";
+$sql = "SELECT * FROM `requests` join `status` where requests.status = status.status  ";
 $result = $connectDb->select($conn, $sql);
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -82,16 +82,21 @@ $result = $connectDb->select($conn, $sql);
             <tr>
                 <th scope="col">Request number</th>
                 <th scope="col">Name</th>
+                <th scope="col">Status</th>
                 <th  scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
+            <?php 
+            while($row = $result->fetch_assoc()){
+            ?>
             <tr>
-                <td scope="col">Request number</td>
-                <td scope="col">Name</td>
-                <td scope="col"><button class="btn btn-success" id="show_request">Show</button></td>
+                <td scope="col"><?php echo $row['requests.id'] ?></td>
+                <td scope="col"><?php echo $row['requests.emp_name'] ?></td>
+                <td scope="col" style="background-color: red ; "><?php echo $row['status.title'] ?></td>
+                <td scope="col"><button class="btn btn-success show_request" name="<?php echo $row['requests.id'] ?>">Show</button></td>
             </tr>
-
+            <?php } ?>
         </tbody>
     </table>
 </div>

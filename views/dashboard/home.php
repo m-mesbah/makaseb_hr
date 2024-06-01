@@ -20,8 +20,6 @@ $password = "1234@Ali";
 $dbname = "makaseb_req";
 
 
-$connect = new ConnectDb($servername, $username, $password, $dbname);
-$conn = $connect->connectdb();
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
