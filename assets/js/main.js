@@ -39,9 +39,9 @@ $(document).on("submit", "#request", function (e) {
 });
 
 //register ajax sending Post request
-$(document).on("submit", "#registerForm", function (e) {
+$(document).on("submit", "#registerForm1", function (e) {
   e.preventDefault();
-  $("#registerForm > .submit_btn").attr("disabled", "true");
+  $("#registerForm1 > .submit_btn").attr("disabled", "true");
   let url = "./handlers/handleRegister.php";
   $.ajax({
     type: "post",
@@ -50,12 +50,12 @@ $(document).on("submit", "#registerForm", function (e) {
     dataType: "JSON",
     success: function (data) {
       console.log(data);
-      $("#registerForm > .submit_btn").removeAttr("disabled");
+      $("#registerForm1 > .submit_btn").removeAttr("disabled");
       if (data.success) {
         $("#Errs").empty();
         $(".successMsg").empty();
         $(".successMsg").append(`<p class='p-3 m-0' >${data.successMsg}</p>`);
-        $("#registerForm")[0].reset();
+        $("#registerForm1")[0].reset();
       } 
       else {
         $(".successMsg").empty();

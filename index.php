@@ -73,7 +73,7 @@ $result = $connectDb->select($conn,$sql);
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="registerForm" action="./handlers//handleRegister.php" method="POST" >
+                        <form id="registerForm1" action="./handlers//handleRegister.php" method="POST" >
  
                         <div id="Errs" class="form-text bg-danger text-white"></div>
                         <div id="" class="form-text bg-success text-white text-center successMsg"></div>
