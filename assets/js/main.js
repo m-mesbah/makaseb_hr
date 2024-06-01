@@ -43,7 +43,6 @@ $(document).on("submit", "#registerForm", function (e) {
   e.preventDefault();
   $("#registerForm > .submit_btn").attr("disabled", "true");
   let url = "./handlers/handleRegister.php";
-  
   $.ajax({
     type: "post",
     url: url,
@@ -54,25 +53,18 @@ $(document).on("submit", "#registerForm", function (e) {
       console.log(data);
       $("#registerForm > .submit_btn").removeAttr("disabled");
       if (data.success) {
-        window.location.href = "./views/dashboard/index.php"; // the redirect goes here
-       
+        // the redirect goes here
+        window.location.href = "./views/dashboard/index.php"; 
         $("#Errs").empty();
         $(".successMsg").empty();
-        $(".successMsg").append(
-          `
-            <p class='p-3 m-0' >${data.successMsg}</p>
-          `
-        )
-        
-      } else {
-         $(".successMsg").empty();
+        $(".successMsg").append(`<p class='p-3 m-0' >${data.successMsg}</p>`);
+        $("#registerForm")[0].reset();
+      } 
+      else {
+        $(".successMsg").empty();
         $("#Errs").empty();
         for (err of data) {
-          $("#Errs").append(
-            `
-              <p class='px-3 py-1 m-0' >-${err}</p>
-            `
-          );
+          $("#Errs").append(`<p class='px-3 py-1 m-0' >-${err}</p>`);
         }
       }
     },
